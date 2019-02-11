@@ -1,5 +1,5 @@
 #!/usr/bin/groovy
-node {
+
 def sshDeploy(String yamlName) {
     def yaml = readYaml file: yamlName
     withCredentials([usernamePassword(credentialsId: yaml.config.credentials_id, passwordVariable: 'password', usernameVariable: 'userName')]) {
@@ -47,7 +47,7 @@ def sshDeploy(String yamlName) {
     }
 }
 
-
+node {
   checkout scm
   sshDeploy('dev/deploy.yml');
 }
